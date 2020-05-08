@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dbexploristic
+    username: root
+    password:
+  application:
+    name: utils-service
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+server:
+  port: 8082
+
+db:
+  dbQueries:
+    getCategories: "Select * from category"
+    insertCategory: "INSERT INTO category(categoryName,categoryDescription,categoryActive,categorySmallIconURL,categoryBigIconURL) VALUES(?,?,?,?,?)"
+    updateCategory: "UPDATE category set categoryName=?,categoryDescription=?,categoryActive=?, categorySmallIconURL=?,categoryBigIconURL=? where categoryId=? "
