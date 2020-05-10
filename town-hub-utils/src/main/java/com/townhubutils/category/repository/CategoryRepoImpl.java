@@ -2,7 +2,7 @@ package com.townhubutils.category.repository;
 
 import com.townhubutils.category.model.Category;
 import com.townhubutils.category.model.mapper.CategoryRowMapper;
-import com.townhubutils.category.service.ServiceProperties;
+import com.townhubutils.category.service.CategoryProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,7 +15,7 @@ public class CategoryRepoImpl implements CategoryRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
     @Autowired
-    ServiceProperties serviceProperties;
+    CategoryProperties serviceProperties;
 
     @Override
     public List<Category> findAllCategories() throws Exception {
