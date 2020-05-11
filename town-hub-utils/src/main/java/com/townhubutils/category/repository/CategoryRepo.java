@@ -10,4 +10,6 @@ public interface CategoryRepo {
     Integer saveCategory(Category category) throws Exception;
 
     Integer updateCategory(int categoryId, Category category) throws Exception;
+
+    Integer changeCategoryStatus(int categoryId, boolean categoryStatus) throws Exception;
 }

@@ -19,6 +19,7 @@ db:
     getCategories: "Select * from category"
     insertCategory: "INSERT INTO category(categoryName,categoryDescription,categoryActive,categorySmallIconURL,categoryBigIconURL) VALUES(?,?,?,?,?)"
     updateCategory: "UPDATE category set categoryName=?,categoryDescription=?,categoryActive=?, categorySmallIconURL=?,categoryBigIconURL=? where categoryId=? "
+    changeCategoryStatus: "UPDATE category set categoryActive=? where categoryId=?"
 
     insertAddress: "INSERT INTO address(city,state,country,area,addressLine1,addressLine2,pinCode) VALUES(?,?,?,?,?,?,?)"
     updateAddress: "UPDATE address set city=?,state=?,country=?,area=?,addressLine1=?,addressLine2=?,pinCode=? where addressId=? "

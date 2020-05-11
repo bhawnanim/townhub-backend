@@ -26,5 +26,6 @@ public class CategoryProperties {
         private String getCategories;
         private String insertCategory;
         private String updateCategory;
+        private String changeCategoryStatus;
     }
 }
