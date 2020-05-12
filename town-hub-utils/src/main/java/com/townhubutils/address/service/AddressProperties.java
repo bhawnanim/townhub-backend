@@ -1,4 +1,5 @@
-package com.townhubutils.category.service;
+package com.townhubutils.address.service;
+
 
 import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @Builder
 @ConfigurationProperties(prefix = "db")
-public class ServiceProperties {
+public class AddressProperties {
 
     @NotNull
     public DbQueries dbQueries;
@@ -23,8 +24,8 @@ public class ServiceProperties {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class DbQueries {
-        private String getCategories;
-        private String insertCategory;
-        private String updateCategory;
+        private String insertAddress;
+        private String updateAddress;
+        private String getAddressById;
     }
 }
