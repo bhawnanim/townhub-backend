@@ -51,4 +51,15 @@ public class CategoryService {
                             "Please record category again!!!")))));
         }
     }
+
+    public Result<Integer> changeCategoryStatus(int id, boolean categoryStatus) throws Exception {
+        int result = categoryRepo.changeCategoryStatus(id, categoryStatus);
+        if (result != 0) {
+            return new Result<>(201, "Category Status updated.");
+        } else {
+            throw new ResultException(new Result<>(400, "Please record category status again.",
+                    new ArrayList<>(Arrays.asList(new Result.TownHubError(("").hashCode(),
+                            "Please record category status again!!!")))));
+        }
+    }
 }

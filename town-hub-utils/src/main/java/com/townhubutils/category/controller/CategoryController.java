@@ -56,4 +56,15 @@ public class CategoryController {
         Result<Integer> result = categoryService.updateCategory(id, category);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @PutMapping(value = "/{id}/{status}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Category status successfully updated"),
+            @ApiResponse(code = 404, message = "Service Not Found", response = CategoryException.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = CategoryException.class)
+    })
+    public ResponseEntity<Result<Integer>> changeCategoryStatus(@PathVariable("id") int id, @PathVariable("status") boolean categoryStatus) throws Exception {
+        Result<Integer> result = categoryService.changeCategoryStatus(id, categoryStatus);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }
