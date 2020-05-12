@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dbexploristic
+    username: root
+    password:
+  application:
+    name: profile-service
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      springframework: ERROR
+    profile:
+      exception: ERROR
+
+db:
+  dbQueries:
+    getProfiles: "select * from profile"
+    getProfileById: "select * from profile where profileId=?"
+    getProfileByRole: "select * from profile where role=?"
+    addProfile: "INSERT INTO PROFILE(userName,firstName,lastName,password,addressId,contactId,profileActive,profileImage,role) values (?,?,?,?,?,?,?,?,?)"
+    updateprofile: "update profile set userName=?,firstName=?,lastName=?,profileImage=?,role=? where profileId=?"
+    updateStatus: "update profile set profileActive=? where profileId=?"
+    getProfileId : "select * from profile where profileId=? and password=?"
+    updatePassword: "UPDATE profile set password=? where profileId=?"
+    getLoginState: "select profileId,userName,role,profileActive from profile where username=? and password=?"
