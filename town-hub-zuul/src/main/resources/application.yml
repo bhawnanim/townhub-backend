@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: zuul-gateway
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dbexploristic
+    username: root
+    password:
+
+logging:
+  level:
+    org:
+      springframework: ERROR
+    profile:
+      exception: ERROR
+
+zuul:
+  ignored-services: "*"
+  routes:
+    profile-service:
+      path: /profile-service/**
+      location: http://localhost:8081
+    utils-service:
+      path: /utils-service/**
+      location: http://localhost:8082
