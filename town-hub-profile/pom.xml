@@ -19,6 +19,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.town-hub-parent</groupId>
+            <artifactId>town-hub-response</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
