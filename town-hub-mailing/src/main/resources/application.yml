@@ -1,0 +1,32 @@
+jasypt:
+  encryptor:
+    password: hello
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    algorithm: PBEWithMD5AndDES
+spring:
+  application:
+    name: mail-service
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dbexploristic
+    username: root
+    password:
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mukeshbhawnani500@gmail.com
+    password: ENC(SJ/j0xlCdKDoNXCTByShWbkPtnD1o3VO)
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+server:
+  port: 8084
+
