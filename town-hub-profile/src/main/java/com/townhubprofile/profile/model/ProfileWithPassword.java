@@ -11,4 +11,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class ProfileWithPassword extends Profile {
     private String password;
+    private Address address;
+    private Contact contact;
 }

@@ -1,11 +1,14 @@
 package com.townhubprofile.profile.service;
 
+import com.townhubprofile.profile.clients.AddressClient;
+import com.townhubprofile.profile.clients.ContactClient;
 import com.townhubprofile.profile.model.*;
 import com.townhubprofile.profile.repository.ProfileRepository;
 import com.townhubresponse.exception.ResultException;
 import com.townhubresponse.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +21,12 @@ public class ProfileService {
     @Autowired
     @Qualifier("profileRepo")
     ProfileRepository profileRepository;
+
+    @Autowired
+    AddressClient addressClient;
+
+    @Autowired
+    ContactClient contactClient;
 
     public Result<List<Profile>> findAllProfiles() {
         List<Profile> list = profileRepository.findAllProfiles();
@@ -49,6 +58,21 @@ public class ProfileService {
     }
 
     public Result<ProfileWithPassword> addProfile(ProfileWithPassword profileWithPassword) throws Exception {
+        ResponseEntity<Result<Integer>> res = addressClient.saveAddress(profileWithPassword.getAddress());
+        if(res.getStatusCodeValue()==201){
+            profileWithPassword.setAddressId(res.getBody().getData().intValue());
+        }else {
+            throw new ResultException(new Result<>(400, "Error!, please try again!", new ArrayList<>(Arrays
+                    .asList(new Result.TownHubError(profileWithPassword.hashCode(), "unable to add the given profile")))));
+        }
+
+        ResponseEntity<Result<Integer>> res2 = contactClient.saveContact(profileWithPassword.getContact());
+        if(res2.getStatusCodeValue()==201){
+            profileWithPassword.setContactId(res.getBody().getData().intValue());
+        }else {
+            throw new ResultException(new Result<>(400, "Error!, please try again!", new ArrayList<>(Arrays
+                    .asList(new Result.TownHubError(profileWithPassword.hashCode(), "unable to add the given profile")))));
+        }
         int id = profileRepository.addProfile(profileWithPassword);
         profileWithPassword.setProfileId(id);
         if (id > 0) {

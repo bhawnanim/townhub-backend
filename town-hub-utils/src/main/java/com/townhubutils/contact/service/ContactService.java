@@ -20,7 +20,7 @@ public class ContactService {
     public Result<Integer> saveContact(Contact contact) throws Exception {
         int result = contactRepo.saveContact(contact);
         if (result > 0) {
-            return new Result<>(201, "Record successfully saved.");
+            return new Result<>(201, result);
         } else {
             throw new ResultException(new Result<>(400, "Please record contact details again properly.",
                     new ArrayList<>(Arrays.asList(new Result.TownHubError(("").hashCode(),

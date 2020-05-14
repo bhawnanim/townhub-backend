@@ -5,8 +5,15 @@ import com.townhubutils.contact.model.mapper.ContactRowMapper;
 import com.townhubutils.contact.service.ContactProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 @Repository(value = "ContactRepo")
@@ -19,7 +26,19 @@ public class ContactRepoImpl implements ContactRepo {
 
     @Override
     public Integer saveContact(Contact contact) throws Exception {
-        return jdbcTemplate.update(serviceProperties.getDbQueries().getInsertContact(), contact.getPhoneNumber(), contact.getEmail(), contact.getWorkNumber());
+        KeyHolder holder=new GeneratedKeyHolder();
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps=connection.prepareStatement(serviceProperties.getDbQueries().getInsertContact(), Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1,contact.getPhoneNumber());
+                ps.setString(2,contact.getEmail());
+                ps.setString(3,contact.getWorkNumber());
+                return ps;
+            }
+        }, holder);
+        int newContactId=holder.getKey().intValue();
+        return newContactId;
     }
 
     @Override
