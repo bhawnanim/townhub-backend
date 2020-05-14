@@ -1,4 +1,4 @@
-package com.townhubparent.townhubzuul;
+package com.townhubzuul;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
