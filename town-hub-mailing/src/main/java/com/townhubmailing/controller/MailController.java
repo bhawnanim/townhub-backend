@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/mails")
 public class MailController {
     @Autowired
-    private MailService ms;
+    private MailService mailService;
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Mail Sent Succesfully"),
@@ -21,7 +21,7 @@ public class MailController {
     })
     public Boolean sendMail(@RequestBody EmailModal emailModal) throws Exception
     {
-        return ms.sendEmail(emailModal);
+        return mailService.sendEmail(emailModal);
     }
 
 }
