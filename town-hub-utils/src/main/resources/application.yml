@@ -28,3 +28,8 @@ db:
     insertContact: "INSERT INTO contact(phoneNumber,email,workNumber) VALUES(?,?,?)"
     updateContact: "UPDATE contact set phoneNumber=?,email=?,workNumber=? where contactId=? "
     getContactById: "SELECT * from contact where contactId=?"
+
+    getQueries: "Select * from query"
+    insertQuery: "INSERT INTO query(listingId,firstName,lastName,title,message,phoneNumber,email) VALUES(?,?,?,?,?,?,?)"
+    getQueriesById: "Select * from query where queryId=?"
+    getQueriesByListingId: "Select * from query where listingId=?"
