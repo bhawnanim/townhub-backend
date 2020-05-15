@@ -1,11 +1,14 @@
 package com.townhubprofile.profile.service;
 
+import com.townhubprofile.profile.clients.AddressClient;
+import com.townhubprofile.profile.clients.ContactClient;
 import com.townhubprofile.profile.model.*;
 import com.townhubprofile.profile.repository.ProfileRepository;
 import com.townhubresponse.exception.ResultException;
 import com.townhubresponse.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

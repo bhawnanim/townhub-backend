@@ -2,6 +2,8 @@ package com.townhubutils.query.service;
 
 import com.townhubresponse.exception.ResultException;
 import com.townhubresponse.response.Result;
+import com.townhubutils.query.client.MailClient;
+import com.townhubutils.query.model.EmailModal;
 import com.townhubutils.query.model.Query;
 import com.townhubutils.query.repository.QueryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.List;
 public class QueryService {
     @Autowired
     QueryRepo queryRepo;
+
+
 
     public Result<Integer> submitQuery(Query query) throws Exception {
         int result = queryRepo.submitQuery(query);

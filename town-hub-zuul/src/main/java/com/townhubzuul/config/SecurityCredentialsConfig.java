@@ -41,6 +41,7 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/profile-service/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/utils-service/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/mail-service/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/profile-service/profiles/**").permitAll()
                 .anyRequest().authenticated();
     }
 

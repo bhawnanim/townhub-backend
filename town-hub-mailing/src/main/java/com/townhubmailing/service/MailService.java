@@ -16,7 +16,7 @@ public class MailService {
             msg.setTo(emailModal.getEmailTo());
             msg.setSubject(emailModal.getSubjact());
             msg.setText(emailModal.getText());
-            msg.setCc("mukeshbhawnani5@gmail.com");
+            msg.setCc(emailModal.getCcEmail());
             javaMailSender.send(msg);
             return true;
         }catch(Exception e){

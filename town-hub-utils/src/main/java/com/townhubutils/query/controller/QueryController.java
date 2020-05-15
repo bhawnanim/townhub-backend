@@ -1,7 +1,9 @@
 package com.townhubutils.query.controller;
 
 import com.townhubresponse.response.Result;
+import com.townhubutils.query.client.MailClient;
 import com.townhubutils.query.exception.QueryException;
+import com.townhubutils.query.model.EmailModal;
 import com.townhubutils.query.model.Query;
 import com.townhubutils.query.service.QueryService;
 import io.swagger.annotations.ApiResponse;
@@ -20,6 +22,9 @@ public class QueryController {
     @Autowired
     QueryService queryService;
 
+    @Autowired
+    MailClient mailClient;
+
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Query is successfully submitted"),
@@ -27,6 +32,7 @@ public class QueryController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = QueryException.class)
     })
     public ResponseEntity<Result<Integer>> submitQuery(@RequestBody Query query) throws Exception {
+        mailClient.sendMail(EmailModal.builder().ccEmail(query.getEmail()).emailTo("mukeshbhawnani5@gmail.com").subjact(query.getTitle()).text(query.getMessage()).build());
         Result<Integer> result = queryService.submitQuery(query);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }

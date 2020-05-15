@@ -1,4 +1,4 @@
-package com.townhubmailing.modal;
+package com.townhubutils.query.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
