@@ -18,11 +18,9 @@ public class QueryService {
     @Autowired
     QueryRepo queryRepo;
 
-    @Autowired
-    MailClient mailClient;
+
 
     public Result<Integer> submitQuery(Query query) throws Exception {
-        mailClient.sendMail(EmailModal.builder().ccEmail(query.getEmail()).emailTo("mukeshbhawnani5@gmail.com").subjact(query.getTitle()).text(query.getMessage()).build());
         int result = queryRepo.submitQuery(query);
         if (result > 0) {
             return new Result<>(201, "Record successfully submitted.");
