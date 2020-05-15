@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "contactClient",url = "http://localhost:8082/api/v1/contact")
+@FeignClient(name = "contactClient",url = "${clients.contactUrl}")
 public interface ContactClient {
     @PostMapping(value = "/")
     ResponseEntity<Result<Integer>> saveContact(@RequestBody Contact contact) throws Exception;
