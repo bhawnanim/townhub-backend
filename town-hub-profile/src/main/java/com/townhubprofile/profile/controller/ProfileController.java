@@ -1,7 +1,10 @@
 package com.townhubprofile.profile.controller;
 
+import com.townhubprofile.profile.clients.AddressClient;
+import com.townhubprofile.profile.clients.ContactClient;
 import com.townhubprofile.profile.model.*;
 import com.townhubprofile.profile.service.ProfileService;
+import com.townhubresponse.exception.ResultException;
 import com.townhubresponse.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController()
@@ -18,6 +23,12 @@ import java.util.List;
 public class ProfileController {
     @Autowired
     ProfileService profileService;
+
+    @Autowired
+    AddressClient addressClient;
+
+    @Autowired
+    ContactClient contactClient;
 
     @GetMapping("/")
     public ResponseEntity<Result<List<Profile>>> getAllProfile() {
@@ -42,6 +53,21 @@ public class ProfileController {
     @PostMapping("/")
     public ResponseEntity<Result<ProfileWithPassword>> addProfile(
             @RequestBody(required = true) @Valid ProfileWithPassword profileWithPassword) throws Exception {
+        ResponseEntity<Result<Integer>> res = addressClient.saveAddress(profileWithPassword.getAddress());
+        if(res.getStatusCodeValue()==201){
+            profileWithPassword.setAddressId(res.getBody().getData().intValue());
+        }else {
+            throw new ResultException(new Result<>(400, "Error!, please try again!", new ArrayList<>(Arrays
+                    .asList(new Result.TownHubError(profileWithPassword.hashCode(), "unable to add the given profile")))));
+        }
+
+        ResponseEntity<Result<Integer>> res2 = contactClient.saveContact(profileWithPassword.getContact());
+        if(res2.getStatusCodeValue()==201){
+            profileWithPassword.setContactId(res.getBody().getData().intValue());
+        }else {
+            throw new ResultException(new Result<>(400, "Error!, please try again!", new ArrayList<>(Arrays
+                    .asList(new Result.TownHubError(profileWithPassword.hashCode(), "unable to add the given profile")))));
+        }
         Result<ProfileWithPassword> result = profileService.addProfile(profileWithPassword);
         return new ResponseEntity<>(result, HttpStatus.valueOf(result.getstatus()));
     }
