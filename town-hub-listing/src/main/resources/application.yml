@@ -16,7 +16,7 @@ server:
 
 db:
   dbQueries:
-    getPlans: "Select * from plans"
+    getPlans: "Select * from plans order by planId DESC"
     insertPlan: "INSERT INTO plans(planName,planAmount,planDescription,planActive,planListingLimit,planDuration,reviewShow,contactShow) VALUES(?,?,?,?,?,?,?,?)"
     updatePlan: "UPDATE plans set planName=?,planAmount=?,planDescription=?,planActive=?, planListingLimit=?,planDuration=?,reviewShow=?,contactShow=? where planId=? "
     changePlanStatus: "UPDATE plans set planActive=? where planId=?"
