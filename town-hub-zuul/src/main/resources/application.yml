@@ -26,6 +26,9 @@ zuul:
     utils-service:
       path: /utils-service/**
       location: http://localhost:8082
+    listing-service:
+      path: /listing-service/**
+      location: http://localhost:8083
     mail-service:
       path: /mail-service/**
       location: http://localhost:8084
