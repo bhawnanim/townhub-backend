@@ -30,7 +30,7 @@ db:
     getProfiles: "select * from profile"
     getProfileById: "select * from profile where profileId=?"
     getProfileByRole: "select * from profile where role=?"
-    addProfile: "INSERT INTO PROFILE(userName,firstName,lastName,password,addressId,contactId,profileActive,profileImage,role) values (?,?,?,?,?,?,?,?,?)"
+    addProfile: "INSERT INTO profile(userName,firstName,lastName,password,addressId,contactId,profileActive,profileImage,role) values (?,?,?,?,?,?,?,?,?)"
     updateprofile: "update profile set userName=?,firstName=?,lastName=?,profileImage=?,role=? where profileId=?"
     updateStatus: "update profile set profileActive=? where profileId=?"
     getProfileId : "select * from profile where profileId=? and password=?"
