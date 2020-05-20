@@ -22,4 +22,6 @@ public interface ProfileRepository {
     public int updatePassword(ProfileWithNewPassword profileWithNewPassword) throws Exception;
 
     public List<ProfileForLoginState> authenticate(ProfileAtLogin profileAtLogin) throws Exception;
+
+    public int checkUsername(String username) throws Exception;
 }

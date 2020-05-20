@@ -29,10 +29,11 @@ db:
   dbQueries:
     getProfiles: "select * from profile"
     getProfileById: "select * from profile where profileId=?"
-    getProfileByRole: "select * from profile where role=?"
+    getProfileByRole: "select p.profileId,p.userName,p.firstName, p.lastName, p.profileActive, p.contactId,p.addressId, p.profileImage, p.role, c.email, c.phoneNumber from profile p, Contact c where p.role=? and c.contactId=p.ContactId"
     addProfile: "INSERT INTO PROFILE(userName,firstName,lastName,password,addressId,contactId,profileActive,profileImage,role) values (?,?,?,?,?,?,?,?,?)"
     updateprofile: "update profile set userName=?,firstName=?,lastName=?,profileImage=?,role=? where profileId=?"
     updateStatus: "update profile set profileActive=? where profileId=?"
-    getProfileId : "select * from profile where profileId=? and password=?"
+    getProfileId : "select p.profileId,p.userName,p.firstName, p.lastName, p.profileActive, p.contactId,p.addressId, p.profileImage, p.role, c.email, c.phoneNumber from profile p, Contact c where profileId=? and password=? and c.contactId=p.ContactId"
     updatePassword: "UPDATE profile set password=? where profileId=?"
     getLoginState: "select profileId,userName,role,profileActive from profile where username=? and password=?"
+    getCheckUsername: "select count(profileId) as profileId from profile where username=?"
