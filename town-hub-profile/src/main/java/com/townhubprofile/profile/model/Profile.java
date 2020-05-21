@@ -19,4 +19,6 @@ public class Profile {
     private Boolean profileActive;
     private String profileImage;
     private String role;
+    private String email;
+    private String phone;
 }

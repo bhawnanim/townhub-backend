@@ -20,6 +20,8 @@ public class ProfileRowMapper implements RowMapper<Profile> {
         profile.setProfileActive(rs.getBoolean("profileActive"));
         profile.setProfileImage(rs.getString("profileImage"));
         profile.setRole(rs.getString("role"));
+        profile.setEmail(rs.getString("email"));
+        profile.setPhone(rs.getString("phoneNumber"));
         return profile;
     }
 }

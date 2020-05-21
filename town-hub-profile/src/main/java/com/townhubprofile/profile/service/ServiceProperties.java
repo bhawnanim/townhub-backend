@@ -31,5 +31,6 @@ public class ServiceProperties {
         private String getProfileId;
         private String updatePassword;
         private String getLoginState;
+        private String getCheckUsername;
     }
 }

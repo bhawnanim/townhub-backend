@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @Repository(value = "profileRepo")
 public class ProfileRepositoryImpl implements ProfileRepository {
@@ -89,5 +90,12 @@ public class ProfileRepositoryImpl implements ProfileRepository {
             return list;
         }
         return null;
+    }
+
+    @Override
+    public int checkUsername(String username) throws Exception {
+
+        Map<String, Object> result = jdbcTemplate.queryForMap(serviceProperties.getDbQueries().getGetCheckUsername(),username);
+        return Integer.parseInt(result.get("ProfileId").toString());
     }
 }

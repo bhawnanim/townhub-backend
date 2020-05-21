@@ -53,6 +53,7 @@ public class ProfileController {
     @PostMapping("/")
     public ResponseEntity<Result<ProfileWithPassword>> addProfile(
             @RequestBody(required = true) @Valid ProfileWithPassword profileWithPassword) throws Exception {
+        profileService.checkUsername(profileWithPassword.getUserName());
         ResponseEntity<Result<Integer>> res = addressClient.saveAddress(profileWithPassword.getAddress());
         if(res.getStatusCodeValue()==201){
             profileWithPassword.setAddressId(res.getBody().getData().intValue());

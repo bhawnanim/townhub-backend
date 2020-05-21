@@ -84,7 +84,7 @@ public class ProfileService {
         if (result > 0) {
             return new Result<>(200, "password has been succefully updated");
         } else if (result == -1) {
-            throw new ResultException(new Result<>(400, "old password does not match!"));
+            throw new ResultException(new Result<>(409, "old password does not match!"));
         } else {
             throw new ResultException(new Result<>(400, "Error!, please try again!",
                     new ArrayList<>(Arrays.asList(new Result.TownHubError("updatePassword".hashCode(),
@@ -102,5 +102,14 @@ public class ProfileService {
             }
         }
         throw new ResultException(new Result<>(400, "invalid username or password"));
+    }
+
+    public Result<Integer> checkUsername(String username) throws Exception{
+        int profileId=profileRepository.checkUsername(username);
+        if(profileId>0){
+            throw new ResultException(new Result<>(409, "Username Already taken Please select some other username"));
+        }else {
+            return new Result<>(200, profileId);
+        }
     }
 }
