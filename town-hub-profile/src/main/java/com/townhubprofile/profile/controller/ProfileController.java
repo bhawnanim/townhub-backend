@@ -87,6 +87,13 @@ public class ProfileController {
         return new ResponseEntity<>(result, HttpStatus.valueOf(result.getstatus()));
     }
 
+    @PutMapping("/{id}/images/")
+    public ResponseEntity<Result<String>> updateProfileImage(@PathVariable("id") @Valid @Pattern(regexp = "[0-9]*") int id,
+                                                             @RequestBody(required = true) ProfileImageUpload profileImageUpload) throws Exception {
+        Result<String> result = profileService.updateProfileImage(id,profileImageUpload.getProfileImage());
+        return new ResponseEntity<>(result, HttpStatus.valueOf(result.getstatus()));
+    }
+
     @PutMapping("/")
     public ResponseEntity<Result<String>> updatePassword(
             @RequestBody(required = true) @Valid ProfileWithNewPassword profileWithNewPassword) throws Exception {

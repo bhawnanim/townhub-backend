@@ -37,4 +37,9 @@ public class CategoryRepoImpl implements CategoryRepo {
         return jdbcTemplate.update(serviceProperties.getDbQueries().getChangeCategoryStatus(), categoryStatus, categoryId);
     }
 
+    @Override
+    public Integer getCategoryCount(int id) throws Exception {
+        return jdbcTemplate.queryForObject(serviceProperties.getDbQueries().getGetCategoryCount(),new Object[]{id},Integer.class);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.townhubutils.category.service;
+package com.townhublisting.listing.service;
 
 import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @Builder
 @ConfigurationProperties(prefix = "db")
-public class CategoryProperties {
+public class ListingProperties {
 
     @NotNull
     public DbQueries dbQueries;
@@ -23,10 +23,13 @@ public class CategoryProperties {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class DbQueries {
-        private String getCategories;
-        private String insertCategory;
-        private String updateCategory;
-        private String changeCategoryStatus;
-        private String getCategoryCount;
+        private String insertListing;
+        private String insertListingTime;
+        private String getAllListing;
+        private String getListingTime;
+        private String getAllListingByBusiness;
+        private String changeListingActive;
+        private String changeListingVerify;
+        private String getAllVerifiedListing;
     }
 }

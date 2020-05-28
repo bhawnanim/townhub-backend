@@ -62,4 +62,8 @@ public class CategoryService {
                             "Please record category status again!!!")))));
         }
     }
+
+    public Result<Integer> findCategoryCount(int id) throws Exception {
+        return new Result<>(200,categoryRepo.getCategoryCount(id));
+    }
 }

@@ -65,6 +65,11 @@ public class ProfileRepositoryImpl implements ProfileRepository {
     }
 
     @Override
+    public boolean updateProfileImage(int id, String profileImage) throws Exception {
+        return jdbcTemplate.update(serviceProperties.getDbQueries().getUpdateProfileImage(),profileImage,id)>0;
+    }
+
+    @Override
     public int updatePassword(ProfileWithNewPassword profileWithNewPassword) throws Exception {
         if (jdbcTemplate.query(serviceProperties.getDbQueries().getGetProfileId(), new PreparedStatementSetter() {
             @Override

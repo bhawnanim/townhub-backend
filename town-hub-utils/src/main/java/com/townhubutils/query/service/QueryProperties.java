@@ -27,5 +27,6 @@ public class QueryProperties {
         private String insertQuery;
         private String getQueriesById;
         private String getQueriesByListingId;
+        private String getQueriesByBusinessId;
     }
 }

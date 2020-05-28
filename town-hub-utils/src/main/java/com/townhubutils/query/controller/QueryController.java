@@ -75,4 +75,17 @@ public class QueryController {
         Result<Query> result = queryService.getQueryByListingId(listingId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/businessQueries/{businessId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Record successfully fetched"),
+            @ApiResponse(code = 401, message = "UnAuthorized", response = QueryException.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = QueryException.class),
+            @ApiResponse(code = 404, message = "Service Not Found", response = QueryException.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = QueryException.class)
+    })
+    public ResponseEntity<Result<List<Query>>> getQueryByBusinessId(@PathVariable("businessId") int businessId) throws Exception {
+        Result<List<Query>> result = queryService.getQueryByBusinessId(businessId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

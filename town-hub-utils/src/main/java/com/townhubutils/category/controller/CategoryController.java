@@ -35,6 +35,19 @@ public class CategoryController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "All Categories"),
+            @ApiResponse(code = 401, message = "UnAuthorized", response = CategoryException.class),
+            @ApiResponse(code = 403, message = "Forbidden", response = CategoryException.class),
+            @ApiResponse(code = 404, message = "Service Not Found", response = CategoryException.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = CategoryException.class)
+    })
+    public ResponseEntity<Result<Integer>> getCategoryCount(@PathVariable("id") int id) throws Exception {
+        Result<Integer> result = categoryService.findCategoryCount(id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Category successfully saved"),
