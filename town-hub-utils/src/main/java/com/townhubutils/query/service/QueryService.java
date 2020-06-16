@@ -59,4 +59,12 @@ public class QueryService {
         }
         throw new ResultException(new Result<>(500, "Query not found for your Listing" + listingId));
     }
+
+    public Result<List<Query>> getQueryByBusinessId(int businessId) throws Exception {
+        List<Query> list1 = queryRepo.getQueryByBusinessId(businessId);
+        if (list1.size() > 0) {
+            return new Result<>(200, list1);
+        }
+        throw new ResultException(new Result<>(500, "Query not found for your Listing" + businessId));
+    }
 }

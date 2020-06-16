@@ -12,4 +12,6 @@ public interface CategoryRepo {
     Integer updateCategory(int categoryId, Category category) throws Exception;
 
     Integer changeCategoryStatus(int categoryId, boolean categoryStatus) throws Exception;
+
+    Integer getCategoryCount(int id) throws Exception;
 }

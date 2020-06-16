@@ -12,4 +12,6 @@ public interface QueryRepo {
     List<Query> getQueryById(int queryId) throws Exception;
 
     List<Query> getQueryByListingId(int listingId) throws Exception;
+
+    List<Query> getQueryByBusinessId(int businessId) throws Exception;
 }

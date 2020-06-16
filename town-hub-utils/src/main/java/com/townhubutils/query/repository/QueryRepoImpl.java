@@ -35,4 +35,9 @@ public class QueryRepoImpl implements QueryRepo {
     public List<Query> getQueryByListingId(int listingId) throws Exception {
         return jdbcTemplate.query(serviceProperties.getDbQueries().getGetQueriesByListingId(), new QueryRowMapper(), listingId);
     }
+
+    @Override
+    public List<Query> getQueryByBusinessId(int businessId) throws Exception {
+        return jdbcTemplate.query(serviceProperties.getDbQueries().getGetQueriesByBusinessId(), new QueryRowMapper(), businessId);
+    }
 }

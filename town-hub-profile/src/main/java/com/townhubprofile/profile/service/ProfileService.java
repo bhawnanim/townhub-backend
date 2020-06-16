@@ -79,6 +79,15 @@ public class ProfileService {
                         "given profileId('" + id + "') does not exists ")))));
     }
 
+    public Result<String> updateProfileImage(int id, String profileImage) throws Exception {
+        if (profileRepository.updateProfileImage(id, profileImage)) {
+            return new Result<>(200, "status of given id(" + id + ") has been succefully updated to");
+        }
+        throw new ResultException(new Result<>(400, "Unable to update the given profile, please try again!",
+                new ArrayList<>(Arrays.asList(new Result.TownHubError((id + "").hashCode(),
+                        "given profileId('" + id + "') does not exists ")))));
+    }
+
     public Result<String> updatePassword(ProfileWithNewPassword profileWithNewPassword) throws Exception {
         int result = profileRepository.updatePassword(profileWithNewPassword);
         if (result > 0) {

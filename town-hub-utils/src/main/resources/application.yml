@@ -23,6 +23,7 @@ db:
     insertCategory: "INSERT INTO category(categoryName,categoryDescription,categoryActive,categorySmallIconURL,categoryBigIconURL) VALUES(?,?,?,?,?)"
     updateCategory: "UPDATE category set categoryName=?,categoryDescription=?,categoryActive=?, categorySmallIconURL=?,categoryBigIconURL=? where categoryId=? "
     changeCategoryStatus: "UPDATE category set categoryActive=? where categoryId=?"
+    getCategoryCount: "select count(categoryId) from listing where categoryId=? group By listingId"
 
     insertAddress: "INSERT INTO address(city,state,country,area,addressLine1,addressLine2,pinCode) VALUES(?,?,?,?,?,?,?)"
     updateAddress: "UPDATE address set city=?,state=?,country=?,area=?,addressLine1=?,addressLine2=?,pinCode=? where addressId=? "
@@ -36,3 +37,4 @@ db:
     insertQuery: "INSERT INTO query(listingId,firstName,lastName,title,message,phoneNumber,email) VALUES(?,?,?,?,?,?,?)"
     getQueriesById: "Select * from query where queryId=?"
     getQueriesByListingId: "Select * from query where listingId=?"
+    getQueriesByBusinessId: "select * from query where listingId in(select listingId from listing where profileId=?)"
